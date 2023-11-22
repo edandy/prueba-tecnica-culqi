@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+}
+.btn-loading span{
+    display: inline-block;
+    margin-right: 5px;
+}
+.btn-loading:after {
+    animation: spinAround 500ms infinite linear;
+    border: 2px solid #000;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spinAround {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(359deg); }
+}

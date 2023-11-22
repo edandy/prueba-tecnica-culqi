@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/LoginView.vue'
 import EmployeesView from '@/views/EmployeesView.vue'
-
-import HomeView from '../views/HomeView.vue'
+import LoginViewNew from "@/views/LoginViewNew.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,25 +12,23 @@ const router = createRouter({
       component: LoginView
     },
     {
+      path: '/login',
+      name: 'login_new',
+      component: LoginViewNew
+    },
+    {
       path: '/employees',
       name: 'employees',
       component: EmployeesView,
       meta: { requiresAuth: true },
     },
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/recruitment',
+      name: 'recruitment',
+      component: () => import('../views/RecruitmentView.vue')
     }
-  ]
+  ],
+  linkActiveClass: 'active',
 })
 
 // NEW
@@ -48,13 +45,10 @@ const router = createRouter({
 });*/
 
 router.beforeEach((to, from, next) => {
-  console.log('to => ', to)
-  const publicPages = ['/'];
+  const publicPages = ['/', '/login'];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
+  const loggedIn = localStorage.getItem('token');
 
-  // trying to access a restricted page + not logged in
-  // redirect to login page
   if (authRequired && !loggedIn) {
     next('/');
   } else {

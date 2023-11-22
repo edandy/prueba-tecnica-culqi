@@ -1,7 +1,12 @@
+<script setup lang="ts">
+    defineProps({
+        title: String,
+    })
+</script>
 <template>
     <div class="bg-white p-4 rounded-lg mt-4">
         <div class="flex items-center justify-between mb-3">
-            <h2 class="text-lg font-semibold mb-0">Empleados</h2>
+            <h2 class="text-lg font-semibold mb-0">{{ title }}</h2>
 
             <div class="animate-pulse w-24">
                 <div class="h-6 bg-gray-200 rounded-xl col-span-2"></div>
