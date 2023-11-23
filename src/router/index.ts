@@ -31,19 +31,6 @@ const router = createRouter({
   linkActiveClass: 'active',
 })
 
-// NEW
-/*router.beforeEach((to, _, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isAuthenticated) {
-      next();
-      return;
-    }
-    next('/login');
-  } else {
-    next();
-  }
-});*/
-
 router.beforeEach((to, from, next) => {
   const publicPages = ['/', '/login'];
   const authRequired = !publicPages.includes(to.path);
